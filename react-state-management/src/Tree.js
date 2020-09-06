@@ -5,7 +5,7 @@ let Tree = ({ nodes }) => {
   return (
     <div>
       {nodes.map((node) => {
-        return <TreeNode node={node} />;
+        return <TreeNode key={node.id} node={node} />;
       })}
     </div>
   );

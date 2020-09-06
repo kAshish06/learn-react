@@ -15,6 +15,7 @@ let PackItems = lazy(() => import("./pack-items/PackItems"));
 let OrderPizza = lazy(() => import("./order-pizza/OrderPizza"));
 let Caraousel = lazy(() => import("./Caraousel"));
 let TreeContainer = lazy(() => import("./TreeContainer"));
+
 let tree = [
   {
     label: "First Node",
@@ -47,28 +48,54 @@ let tree = [
   },
   { label: "Third Node", id: 3, children: [] },
 ];
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      counterProps: {
-        firstName: "Ashish",
-        lastName: "Kumar",
-      },
-      progress: 0,
-    };
-  }
+export let TestContext = React.createContext(tree);
+// class App extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       counterProps: {
+//         firstName: "Ashish",
+//         lastName: "Kumar",
+//       },
+//       progress: 0,
+//     };
+//   }
 
-  increment = () => {
-    this.setState({
-      progress: this.state.progress + 4,
-    });
-  };
+//   increment = () => {
+//     this.setState({
+//       progress: this.state.progress + 4,
+//     });
+//   };
 
-  render() {
-    return (
-      <div>
-        <Provider store={store}>
+//   render() {
+//     return (
+//       <div>
+//         <Provider store={store}>
+//           <Link to="/">Counter</Link>
+//           <Link to="/packItems">Pack Items</Link>
+//           <Link to="/orderPizza">Order Pizza</Link>
+//           <Link to="/carousel">Carousel</Link>
+//           <Link to="/tree">Tree</Link>
+//           <Suspense fallback={<h1>Loading routes..</h1>}>
+//             <Router>
+//               <Counter {...this.counterProps} path="/" />
+//               <PackItems path="packItems" />
+//               <OrderPizza path="orderPizza" />
+//               <Caraousel images={images} path="carousel" />
+//               <TreeContainer tree={tree} path="tree" />
+//             </Router>
+//           </Suspense>
+//         </Provider>
+//       </div>
+//     );
+//   }
+// }
+
+export let App = () => {
+  return (
+    <div>
+      <Provider store={store}>
+        <TestContext.Provider value={tree}>
           <Link to="/">Counter</Link>
           <Link to="/packItems">Pack Items</Link>
           <Link to="/orderPizza">Order Pizza</Link>
@@ -76,21 +103,15 @@ class App extends React.Component {
           <Link to="/tree">Tree</Link>
           <Suspense fallback={<h1>Loading routes..</h1>}>
             <Router>
-              <Counter {...this.counterProps} path="/" />
-              {/* <hr /> */}
+              <Counter path="/" />
               <PackItems path="packItems" />
-              {/* <hr /> */}
               <OrderPizza path="orderPizza" />
-              {/*  <HOCEx /> */}
-              {/* <button onClick={this.increment}>Increment</button> */}
               <Caraousel images={images} path="carousel" />
-              <TreeContainer tree={tree} path="tree" />
+              <TreeContainer path="tree" />
             </Router>
           </Suspense>
-        </Provider>
-      </div>
-    );
-  }
-}
-
-export default App;
+        </TestContext.Provider>
+      </Provider>
+    </div>
+  );
+};

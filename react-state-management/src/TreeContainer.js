@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import Tree from "./Tree";
+import { TestContext } from "./App";
+// import { TestContext } from "./ContextTest";
 
 function normalizeTree(tree, level = 0) {
   let normalisedTree = [];
@@ -18,7 +20,8 @@ function normalizeTree(tree, level = 0) {
   });
   return normalisedTree;
 }
-let TreeContainer = ({ tree }) => {
+let TreeContainer = () => {
+  let tree = useContext(TestContext);
   let treeNodes = normalizeTree(tree);
   return (
     <div>
