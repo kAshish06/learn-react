@@ -1,0 +1,55 @@
+.square {
+  width: 100px;
+  height: 100px;
+  background-color: grey;
+  margin: auto;
+}
+.circle {
+  width: 100px;
+  height: 100px;
+  background-color: grey;
+  margin: auto;
+  border-radius: 50px;
+}
+.parallelogram {
+  width: 100px;
+  height: 100px;
+  background-color: grey;
+  margin: auto;
+  transform: skew(-20deg);
+}
+.triangle {
+  display: inline-block;
+  width: 0px;
+  height: 0px;
+  margin: auto;
+  border-left: 75px solid transparent;
+  border-right: 75px solid transparent;
+  border-bottom: 75px solid grey;
+}
+.isosceles-triangle {
+  display: inline-block;
+  width: 0px;
+  height: 0px;
+  margin: auto;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid grey;
+}
+.right-triangle {
+  display: inline-block;
+  width: 0px;
+  height: 0px;
+  margin: auto;
+  border-left: 0px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 100px solid grey;
+}
+.trapezium {
+  width: 100px;
+  /* height: 20px; */
+  margin: auto;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 200px solid grey;
+}

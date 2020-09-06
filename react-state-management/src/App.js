@@ -1,12 +1,20 @@
-import React from "react";
-import Counter from "./Counter";
-import PackItems from "./pack-items/PackItems";
-import OrderPizza from "./order-pizza/OrderPizza";
-// import HOCEx from "./HOC-Ex/HOCEx";
-import Progress from "./Progress";
+import React, { lazy, Suspense } from "react";
+import { Router, Link } from "@reach/router";
+import { Provider } from "react-redux";
+// import Counter from "./Counter";
+// import PackItems from "./pack-items/PackItems";
+// import OrderPizza from "./order-pizza/OrderPizza";
+// // import HOCEx from "./HOC-Ex/HOCEx";
+// import Progress from "./Progress";
 import images from "./images";
-import Caraousel from "./Caraousel";
-import TreeContainer from "./TreeContainer";
+import store from "./store";
+// import Caraousel from "./Caraousel";
+// import TreeContainer from "./TreeContainer";
+let Counter = lazy(() => import("./Counter"));
+let PackItems = lazy(() => import("./pack-items/PackItems"));
+let OrderPizza = lazy(() => import("./order-pizza/OrderPizza"));
+let Caraousel = lazy(() => import("./Caraousel"));
+let TreeContainer = lazy(() => import("./TreeContainer"));
 let tree = [
   {
     label: "First Node",
@@ -60,16 +68,26 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {/* <Counter {...this.counterProps} />
-        <hr /> */}
-        {/* <PackItems />
-        <hr />
-        <OrderPizza /> */}
-        {/*  <HOCEx /> */}
-        {/* <button onClick={this.increment}>Increment</button>
-        <Progress width={this.state.progress} /> */}
-        {/* <Caraousel images={images} /> */}
-        <TreeContainer tree={tree} />
+        <Provider store={store}>
+          <Link to="/">Counter</Link>
+          <Link to="/packItems">Pack Items</Link>
+          <Link to="/orderPizza">Order Pizza</Link>
+          <Link to="/carousel">Carousel</Link>
+          <Link to="/tree">Tree</Link>
+          <Suspense fallback={<h1>Loading routes..</h1>}>
+            <Router>
+              <Counter {...this.counterProps} path="/" />
+              {/* <hr /> */}
+              <PackItems path="packItems" />
+              {/* <hr /> */}
+              <OrderPizza path="orderPizza" />
+              {/*  <HOCEx /> */}
+              {/* <button onClick={this.increment}>Increment</button> */}
+              <Caraousel images={images} path="carousel" />
+              <TreeContainer tree={tree} path="tree" />
+            </Router>
+          </Suspense>
+        </Provider>
       </div>
     );
   }

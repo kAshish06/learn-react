@@ -2,6 +2,7 @@ import React, { useState, useEffect, useReducer } from "react";
 import CaraouselControls from "./CaraouselControls";
 import CaraouselSlides from "./CaraouselSlides";
 import Progress from "./Progress";
+import { connect } from "react-redux";
 function getPreviousImage(currentImage, images) {
   let currentIndex = images.indexOf(currentImage);
   return currentIndex > 0
@@ -94,5 +95,16 @@ let Caraousel = ({ images }) => {
     </div>
   );
 };
+// const mapStateToProps = ({ images, current, isPlaying }) => ({
+//   images,
+//   current,
+//   isPlaying,
+// });
+// const mapDispatchToProps = (dispatch) => ({
+//   onNext: () => dispatch({ type: "NEXT" }),
+//   onPrevious: () => dispatch({ type: "PREVIOUS" }),
+// });
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Caraousel);
 
 export default Caraousel;
