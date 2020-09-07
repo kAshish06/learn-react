@@ -1,1 +1,7 @@
-<mat-toolbar> Angular-Prep </mat-toolbar>Test
+<mat-toolbar>Angular-Prep </mat-toolbar>
+<div>
+  <ul>
+    <li *ngFor="let item of test">{{ item }}</li>
+  </ul>
+</div>
+<router-outlet></router-outlet>
