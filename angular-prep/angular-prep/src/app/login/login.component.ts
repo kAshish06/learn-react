@@ -8,6 +8,7 @@ import { LoginService } from './login.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  public headerHighlightColor = 'red';
   public loginForm: FormGroup;
   constructor(private loginService: LoginService, private router: Router) {}
 

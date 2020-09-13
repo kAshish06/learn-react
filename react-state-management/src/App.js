@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { Router, Link } from "@reach/router";
 import { Provider } from "react-redux";
 // import Counter from "./Counter";
@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 // import Progress from "./Progress";
 import images from "./images";
 import store from "./store";
+import TypeAhead from "./TypeAhead";
 // import Caraousel from "./Caraousel";
 // import TreeContainer from "./TreeContainer";
 let Counter = lazy(() => import("./Counter"));
@@ -92,6 +93,16 @@ export let TestContext = React.createContext(tree);
 // }
 
 export let App = () => {
+  useEffect(() => {
+    (async function () {
+      let res = await fetch("http://localhost:3000/animals").then((res) =>
+        res.json()
+      );
+      // .then((res) => {
+      console.log(res);
+      // });
+    })();
+  });
   return (
     <div>
       <Provider store={store}>
@@ -101,6 +112,7 @@ export let App = () => {
           <Link to="/orderPizza">Order Pizza</Link>
           <Link to="/carousel">Carousel</Link>
           <Link to="/tree">Tree</Link>
+          <Link to="/typeahead">TypeAhead</Link>
           <Suspense fallback={<h1>Loading routes..</h1>}>
             <Router>
               <Counter path="/" />
@@ -108,6 +120,7 @@ export let App = () => {
               <OrderPizza path="orderPizza" />
               <Caraousel images={images} path="carousel" />
               <TreeContainer path="tree" />
+              <TypeAhead path="typeahead" />
             </Router>
           </Suspense>
         </TestContext.Provider>
